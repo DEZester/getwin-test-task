@@ -1,8 +1,15 @@
-import React from 'react';
-import './App.css';
+import { FC } from 'react';
+import Header from './components/header/Header';
 
-function App() {
-  return <div className="App">Hello</div>;
-}
+const App: FC = () => {
+  return (
+    <div className="app">
+      <Header />
+    </div>
+  );
+};
 
 export default App;
+//algo
+//create basic layout
+//
