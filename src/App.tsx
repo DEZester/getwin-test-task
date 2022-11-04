@@ -41,8 +41,8 @@ const App: FC = () => {
             />
             <button className="main__btn">Search</button>
           </div>
-          <div className="main__list">
-            <figure>
+          <div className="main__pokemons">
+            <figure className="main__list">
               <figcaption className="main__list-title">Name</figcaption>
               <ul className="main__pokemon-list">
                 <li className="main__list-item">Pokemon</li>
@@ -62,7 +62,6 @@ const App: FC = () => {
               </div>
             </figure>
             <div id="billdesc">
-              <input className="editOption"></input>
               <select id="test">
                 <option className="non" value="option1">
                   Option1
