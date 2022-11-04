@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
-@import './components/header/header.module.scss';
+@import './header.module.scss';
 body {
   padding: 0;
   margin: 0;
@@ -12,4 +12,5 @@ body {
 .app {
   width: 100vw;
   height: 100vh;
+  background-image: url('../images/header_bg.png');
 }
