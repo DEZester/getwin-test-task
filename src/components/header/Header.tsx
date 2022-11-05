@@ -1,6 +1,7 @@
 import { FC } from "react";
 import "../../stylesheets/header.scss";
 import headerLogo from "../../images/logo.png";
+
 const Header: FC = () => {
   return (
     <header className="header">
