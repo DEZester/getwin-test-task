@@ -1,16 +1,11 @@
 import { FC } from "react";
-import Header from "./components/header/Header";
-import PokemonsList from "./components/pokemonList/PokemonsList";
-
-import PokemonCard from "./components/pokemonCard/PokemonCard";
+import Pokemons from "./components/Pokemons";
 
 const App: FC = () => {
   return (
-    <div className="app">
-      <Header />
-      <PokemonsList />
-      <PokemonCard />
-    </div>
+    <>
+      <Pokemons />
+    </>
   );
 };
 

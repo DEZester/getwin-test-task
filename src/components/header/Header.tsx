@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "../../stylesheets/header.scss";
+import "./header.scss";
 import headerLogo from "../../images/logo.png";
 
 const Header: FC = () => {

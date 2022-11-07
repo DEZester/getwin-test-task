@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
-@import "./header.scss";
-@import "./pokemonsList.scss";
-@import "./pokemonCard.scss";
+@import "../components/header/header.scss";
+@import "../components/pokemonList/pokemonsList.scss";
+@import "../components/pokemonCard/pokemonCard.scss";
 
 body {
   padding: 0;

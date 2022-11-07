@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "../../stylesheets/pokemonCard.scss";
+import "./pokemonCard.scss";
 import pokemonImg from "../../images/pokemonTestImg.png";
 
 const PokemonCard: FC = () => {

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "../../stylesheets/pokemonsList.scss";
+import "./pokemonsList.scss";
 
 const PokemonsList: FC = () => {
   return (
