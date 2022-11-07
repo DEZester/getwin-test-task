@@ -15,6 +15,12 @@ const App: FC = () => {
 };
 
 export default App;
+
 //algo
-//create basic layout
-//
+//create basic layout ++
+//connect basic redux store
+//connect pokemonApi to redux store
+//make a pagination for pokemons
+//connect datas from one pokemon to pokemonCard
+//make a pokemon moves pagination
+//add routing
