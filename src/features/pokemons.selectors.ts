@@ -1,1 +1,1 @@
-export const POKEMONS_DATA: string = "POKEMONS_DATA";
+import { IPokemonsState, TPokemons } from "../types/interfaces";

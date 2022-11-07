@@ -2,8 +2,16 @@ import { FC } from "react";
 import Header from "./header/Header";
 import PokemonsList from "./pokemonList/PokemonsList";
 import PokemonCard from "./pokemonCard/PokemonCard";
+import { connect } from "react-redux";
+import { AppStateType } from "../store";
 
-const Pokemons: FC = () => {
+type Props = {
+  pokemons: Array<any>;
+};
+
+const Pokemons: FC<Props> = ({ pokemons }) => {
+  console.log(pokemons);
+
   return (
     <div className="app">
       <Header />
@@ -13,4 +21,8 @@ const Pokemons: FC = () => {
   );
 };
 
-export default Pokemons;
+const mapStateToProps = (state: AppStateType) => ({
+  pokemons: state.pokemons.pokemonsList,
+});
+
+export default connect(mapStateToProps)(Pokemons);

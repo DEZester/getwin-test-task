@@ -8,4 +8,6 @@ export interface IPokemonsState {
   pokemonsList: Array<any>;
 }
 
+export type TPokemons = Array<any>;
+
 export type DispatchType = (args: IAction) => IAction;
