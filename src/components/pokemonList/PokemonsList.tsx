@@ -47,13 +47,13 @@ const PokemonsList: FC = () => {
               <li className="main__list-item">Pokemon</li>
               <li className="main__list-item">Pokemon</li>
             </ul>
-            <div className="main__pagination">
-              <button className="main__page-btn" disabled>
-                <i className="main__page-icon main__arrowBack"></i>
+            <div className="pagination">
+              <button className="pagination__page-btn">
+                <i className="pagination__page-icon pagination__arrowBack"></i>
               </button>
               <span>Pagination</span>
-              <button className="main__page-btn">
-                <i className="main__page-icon main__arrowNext"></i>
+              <button className="pagination__page-btn">
+                <i className="pagination__page-icon pagination__arrowNext"></i>
               </button>
             </div>
           </figure>
