@@ -9,7 +9,7 @@ const App: FC = () => {
     <div className="app">
       <Header />
       <PokemonsList />
-      {/* <PokemonCard /> */}
+      <PokemonCard />
     </div>
   );
 };

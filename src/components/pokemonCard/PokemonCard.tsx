@@ -11,21 +11,21 @@ const PokemonCard: FC = () => {
           alt="pokemonImg"
           className="pokemonCard__pokemon-image"
         />
-        <h1 className="pokemonCard__name">pokemon name</h1>
         <div className="pokemonCard__types-stats">
+          <h1 className="pokemonCard__name">pokemon name</h1>
           <h2 className="pokemonCard__types-title">Types</h2>
           <div className="pokemonCard__types">
             <span className="pokemonCard__type">Grass</span>
             <span className="pokemonCard__type">Poison</span>
           </div>
-        </div>
-        <div className="pokemonCard__stats">
-          <span className="pokemonCard__stat">hp</span>
-          <span className="pokemonCard__stat">attack</span>
-          <span className="pokemonCard__stat">defense</span>
-          <span className="pokemonCard__stat">special-attack</span>
-          <span className="pokemonCard__stat">special-defense</span>
-          <span className="pokemonCard__stat">speed</span>
+          <div className="pokemonCard__stats">
+            <span className="pokemonCard__stat">hp</span>
+            <span className="pokemonCard__stat">attack</span>
+            <span className="pokemonCard__stat">defense</span>
+            <span className="pokemonCard__stat">special-attack</span>
+            <span className="pokemonCard__stat">special-defense</span>
+            <span className="pokemonCard__stat">speed</span>
+          </div>
         </div>
       </div>
       <figure className="pokemonCard__moves">
