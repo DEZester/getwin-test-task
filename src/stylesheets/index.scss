@@ -45,11 +45,23 @@ body {
     &:hover {
       background: url("../images/back-arrow_hover.png");
     }
+    &_disabled {
+      background: url("../images/back-arrow_disabled.png");
+      &:hover {
+        background: url("../images/back-arrow_disabled.png");
+      }
+    }
   }
   &__arrowNext {
     background: url("../images/next-arrow.png");
     &:hover {
       background: url("../images/next-arrow_hover.png");
+    }
+    &_disabled {
+      background: url("../images/next-arrow_disabled.png");
+      &:hover {
+        background: url("../images/next-arrow_disabled.png");
+      }
     }
   }
 }
