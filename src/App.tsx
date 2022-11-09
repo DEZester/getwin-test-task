@@ -16,9 +16,12 @@ export default App;
 //algo
 //create basic layout ++
 //connect basic redux store ++
-//create a list with test Datas of Pokemons
-//connect pokemonApi to redux store
+//create a list with test Datas of Pokemons ++
+//connect pokemonApi to redux store ++
+//make a function that make a capital letter in pokemonName++
 //make a pagination for pokemons
 //connect datas from one pokemon to pokemonCard
 //make a pokemon moves pagination
+//find pokemon by search
+//sort pokemons by type
 //add routing

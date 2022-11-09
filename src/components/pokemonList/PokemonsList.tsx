@@ -1,5 +1,6 @@
 import { FC } from "react";
 import "./pokemonsList.scss";
+import { capLetPokName } from "../../features/expansionsFuncs";
 
 type Props = {
   pokemons: Array<any>;
@@ -52,7 +53,7 @@ const PokemonsList: FC<Props> = ({ pokemons }) => {
                   className="main__list-item"
                   onClick={() => console.log(pokemon)}
                 >
-                  {pokemon.name}
+                  {capLetPokName(pokemon.name)}
                 </li>
               ))}
             </ul>
