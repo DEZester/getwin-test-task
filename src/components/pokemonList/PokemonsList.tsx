@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 
 import { capLetPokName } from "../../features/expansionsFuncs";
-import PokemonsPagination from "./PokemonsPagination";
+import Pagination from "../Pagination/Pagination";
 
 import { connect } from "react-redux";
 import { AppStateType } from "../../store";
@@ -83,7 +83,7 @@ const PokemonsList: FC<Props> = ({ pokemons, getPokemons }) => {
                 </li>
               ))}
             </ul>
-            <PokemonsPagination
+            <Pagination
               prevPage={prevPage}
               nextPage={nextPage}
               currentPage={currentPage}

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import Header from "./header/Header";
-import PokemonsList from "./pokemonList/PokemonsList";
-import PokemonCard from "./pokemonCard/PokemonCard";
+import Header from "./Header/Header";
+import PokemonsList from "./PokemonList/PokemonsList";
+import PokemonCard from "./PokemonCard/PokemonCard";
 
 const Pokemons: FC = () => {
   return (

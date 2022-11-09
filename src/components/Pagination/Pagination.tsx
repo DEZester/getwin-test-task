@@ -9,7 +9,7 @@ type Props = {
   maxPage: number;
 };
 
-const PokemonsPagination: FC<Props> = ({
+const Pagination: FC<Props> = ({
   nextPage,
   prevPage,
   currentPage,
@@ -45,4 +45,4 @@ const PokemonsPagination: FC<Props> = ({
   );
 };
 
-export default PokemonsPagination;
+export default Pagination;
