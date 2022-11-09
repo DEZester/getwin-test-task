@@ -1,12 +1,15 @@
 import { FC } from "react";
 import "./pokemonsList.scss";
 import { capLetPokName } from "../../features/expansionsFuncs";
+import PokemonsPagination from "./PokemonsPagination";
 
 type Props = {
   pokemons: Array<any>;
+  nextPage?: () => void;
+  prevPage?: () => void;
 };
 
-const PokemonsList: FC<Props> = ({ pokemons }) => {
+const PokemonsList: FC<Props> = ({ pokemons, prevPage, nextPage }) => {
   return (
     <div className="main">
       <div className="main__content-container">
@@ -57,15 +60,7 @@ const PokemonsList: FC<Props> = ({ pokemons }) => {
                 </li>
               ))}
             </ul>
-            <div className="pagination">
-              <button className="pagination__page-btn">
-                <i className="pagination__page-icon pagination__arrowBack"></i>
-              </button>
-              <span>Pagination</span>
-              <button className="pagination__page-btn">
-                <i className="pagination__page-icon pagination__arrowNext"></i>
-              </button>
-            </div>
+            <PokemonsPagination prevPage={prevPage} nextPage={nextPage} />
           </figure>
           <div id="billdesc">
             <select id="test" className="main__sort">
