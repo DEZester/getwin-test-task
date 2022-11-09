@@ -1,7 +1,11 @@
 import { FC } from "react";
 import "./pokemonsList.scss";
 
-const PokemonsList: FC = () => {
+type Props = {
+  pokemons: Array<any>;
+};
+
+const PokemonsList: FC<Props> = ({ pokemons }) => {
   return (
     <div className="main">
       <div className="main__content-container">
@@ -42,10 +46,15 @@ const PokemonsList: FC = () => {
           <figure className="main__list">
             <figcaption className="main__list-title">Name</figcaption>
             <ul className="main__pokemon-list">
-              <li className="main__list-item">Pokemon</li>
-              <li className="main__list-item">Pokemon</li>
-              <li className="main__list-item">Pokemon</li>
-              <li className="main__list-item">Pokemon</li>
+              {pokemons.map((pokemon) => (
+                <li
+                  key={pokemon.name}
+                  className="main__list-item"
+                  onClick={() => console.log(pokemon)}
+                >
+                  {pokemon.name}
+                </li>
+              ))}
             </ul>
             <div className="pagination">
               <button className="pagination__page-btn">
