@@ -1,15 +1,34 @@
-import { FC } from "react";
-import "./pokemonsList.scss";
+import { FC, useEffect, useState } from "react";
+
 import { capLetPokName } from "../../features/expansionsFuncs";
 import PokemonsPagination from "./PokemonsPagination";
 
+import { connect } from "react-redux";
+import { AppStateType } from "../../store";
+import { pokemonsSelector } from "../../features/pokemons.selectors";
+import { DispatchType, StateType, TPokemons } from "../../types/interfaces";
+import * as pokemonsActions from "../../features/pokemons.actions";
+import "./pokemonsList.scss";
+import usePagination from "../../hooks/usePaginstion";
+
 type Props = {
-  pokemons: Array<any>;
-  nextPage?: () => void;
-  prevPage?: () => void;
+  pokemons: TPokemons;
+  getPokemons: () => void;
 };
 
-const PokemonsList: FC<Props> = ({ pokemons, prevPage, nextPage }) => {
+const PokemonsList: FC<Props> = ({ pokemons, getPokemons }) => {
+  useEffect(() => {
+    getPokemons();
+  }, []);
+
+  const [page, setPage] = useState<number>(1);
+  const itemsPerPage: number = 10;
+
+  const { currentData, nextPage, prevPage } = usePagination(
+    pokemons,
+    itemsPerPage
+  );
+
   return (
     <div className="main">
       <div className="main__content-container">
@@ -50,7 +69,7 @@ const PokemonsList: FC<Props> = ({ pokemons, prevPage, nextPage }) => {
           <figure className="main__list">
             <figcaption className="main__list-title">Name</figcaption>
             <ul className="main__pokemon-list">
-              {pokemons.map((pokemon) => (
+              {currentData().map((pokemon) => (
                 <li
                   key={pokemon.name}
                   className="main__list-item"
@@ -81,4 +100,12 @@ const PokemonsList: FC<Props> = ({ pokemons, prevPage, nextPage }) => {
   );
 };
 
-export default PokemonsList;
+const mapState = (state: AppStateType): StateType => ({
+  pokemons: pokemonsSelector(state),
+});
+
+const mapDispatch: DispatchType = {
+  getPokemons: pokemonsActions.getPokemonsData,
+};
+
+export default connect(mapState, mapDispatch)(PokemonsList);

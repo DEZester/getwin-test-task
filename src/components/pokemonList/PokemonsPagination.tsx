@@ -1,38 +1,26 @@
-import { FC, useRef } from "react";
+import { FC } from "react";
+import { pagesPerItems } from "../../features/expansionsFuncs";
 
 type Props = {
-  nextPage?: () => void;
-  prevPage?: () => void;
+  nextPage: () => void;
+  prevPage: () => void;
 };
 
 const PokemonsPagination: FC<Props> = ({ nextPage, prevPage }) => {
-  const btnPrevPageRef = useRef<HTMLButtonElement>(null);
-  const btnNextPageRef = useRef<HTMLButtonElement>(null);
-
-  const iconNextDisabled: string = btnNextPageRef.current?.disabled
-    ? "pagination__page-icon pagination__arrowNext pagination__arrowNext_disabled"
-    : "pagination__page-icon pagination__arrowNext";
-
-  const iconPrevDisabled: string = btnPrevPageRef.current?.disabled
-    ? "pagination__page-icon pagination__arrowBack pagination__arrowBack_disabled"
-    : "pagination__page-icon pagination__arrowBack";
-
   return (
     <div className="pagination">
-      <button
-        className="pagination__page-btn"
-        onClick={prevPage}
-        ref={btnPrevPageRef}
-      >
-        <i className={iconPrevDisabled}></i>
+      <button className="pagination__page-btn" onClick={prevPage}>
+        <i className="pagination__btn-icon pagination__arrowBack"></i>
       </button>
-      <span>Pagination</span>
-      <button
-        className="pagination__page-btn"
-        onClick={nextPage}
-        ref={btnNextPageRef}
-      >
-        <i className={iconNextDisabled}></i>
+      <ul className="pagination__pages">
+        {pagesPerItems(10, 1154).map((number) => (
+          <li className="pagination__page" key={number}>
+            <a className="pagination__page-link">{number}</a>
+          </li>
+        ))}
+      </ul>
+      <button className="pagination__page-btn" onClick={nextPage}>
+        <i className=" pagination__btn-icon pagination__arrowNext"></i>
       </button>
     </div>
   );

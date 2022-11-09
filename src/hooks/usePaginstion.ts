@@ -18,12 +18,12 @@ function usePagination(data: Array<any>, itemsPerPage: number) {
     setCurrentPage((currentPage) => Math.max(currentPage - 1, 1));
   }
 
-  function jump(page: number) {
+  function selectPage(page: number) {
     const pageNumber = Math.max(1, page);
     setCurrentPage((currentPage) => Math.min(pageNumber, maxPage));
   }
 
-  return { nextPage, prevPage, jump, currentData, currentPage, maxPage };
+  return { nextPage, prevPage, selectPage, currentData, currentPage, maxPage };
 }
 
 export default usePagination;

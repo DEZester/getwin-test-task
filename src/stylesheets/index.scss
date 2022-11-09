@@ -24,6 +24,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  // border: 2px solid black;
   &__page-btn {
     padding: 0;
     width: 32px;
@@ -33,7 +34,7 @@ body {
     border: none;
     text-align: center;
   }
-  &__page-icon {
+  &__btn-icon {
     display: inline-block;
     width: 32px;
     height: 32px;
@@ -63,5 +64,21 @@ body {
         background: url("../images/next-arrow_disabled.png");
       }
     }
+  }
+  &__pages {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  &__page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border: 1px solid black;
+    font-size: 18px;
+    cursor: pointer;
   }
 }

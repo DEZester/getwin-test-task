@@ -38,11 +38,11 @@ const PokemonCard: FC = () => {
         </ul>
         <div className="pagination">
           <button className="pagination__page-btn">
-            <i className="pagination__page-icon pagination__arrowBack"></i>
+            <i className="pagination__btn-icon pagination__arrowBack"></i>
           </button>
           <span>Pagination</span>
           <button className="pagination__page-btn">
-            <i className="pagination__page-icon pagination__arrowNext"></i>
+            <i className="pagination__btn-icon pagination__arrowNext"></i>
           </button>
         </div>
       </figure>
