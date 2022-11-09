@@ -1,21 +1,40 @@
 import { FC } from "react";
-import { pagesPerItems } from "../../features/expansionsFuncs";
+import { getPaginationItems } from "../../features/expansionsFuncs";
 
 type Props = {
   nextPage: () => void;
   prevPage: () => void;
+  setCurrentPage: (e: number) => void;
+  currentPage: number;
+  maxPage: number;
 };
 
-const PokemonsPagination: FC<Props> = ({ nextPage, prevPage }) => {
+const PokemonsPagination: FC<Props> = ({
+  nextPage,
+  prevPage,
+  currentPage,
+  maxPage,
+  setCurrentPage,
+}) => {
   return (
     <div className="pagination">
       <button className="pagination__page-btn" onClick={prevPage}>
         <i className="pagination__btn-icon pagination__arrowBack"></i>
       </button>
       <ul className="pagination__pages">
-        {pagesPerItems(10, 1154).map((number) => (
-          <li className="pagination__page" key={number}>
-            <a className="pagination__page-link">{number}</a>
+        {getPaginationItems(currentPage, maxPage, 7).map((pageNum, idx) => (
+          <li
+            className={
+              pageNum == currentPage
+                ? "pagination__page pagination__page_active"
+                : "pagination__page"
+            }
+            key={idx}
+            onClick={() => setCurrentPage(pageNum)}
+          >
+            <a className="pagination__page-link">
+              {!isNaN(pageNum) ? pageNum : "..."}
+            </a>
           </li>
         ))}
       </ul>

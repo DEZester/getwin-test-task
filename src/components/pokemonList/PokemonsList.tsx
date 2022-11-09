@@ -24,10 +24,14 @@ const PokemonsList: FC<Props> = ({ pokemons, getPokemons }) => {
   const [page, setPage] = useState<number>(1);
   const itemsPerPage: number = 10;
 
-  const { currentData, nextPage, prevPage } = usePagination(
-    pokemons,
-    itemsPerPage
-  );
+  const {
+    currentData,
+    nextPage,
+    prevPage,
+    currentPage,
+    maxPage,
+    setCurrentPage,
+  } = usePagination(pokemons, itemsPerPage);
 
   return (
     <div className="main">
@@ -79,7 +83,13 @@ const PokemonsList: FC<Props> = ({ pokemons, getPokemons }) => {
                 </li>
               ))}
             </ul>
-            <PokemonsPagination prevPage={prevPage} nextPage={nextPage} />
+            <PokemonsPagination
+              prevPage={prevPage}
+              nextPage={nextPage}
+              currentPage={currentPage}
+              maxPage={maxPage}
+              setCurrentPage={setCurrentPage}
+            />
           </figure>
           <div id="billdesc">
             <select id="test" className="main__sort">
