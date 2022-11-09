@@ -15,14 +15,10 @@ export interface IPokemons {
   pokemons: IPokemonsState;
 }
 
-interface IPokemonsTest {
-  name: string;
-  type1: string;
-  type2?: string | null;
-}
+export type DispatchType = {
+  getPokemons: () => void;
+};
 
-export interface IPokemonsState2 {
-  pokemonsList: Array<IPokemonsTest>;
-}
-
-export type DispatchType = (args: IAction) => IAction;
+export type StateType = {
+  pokemons: Array<any>;
+};

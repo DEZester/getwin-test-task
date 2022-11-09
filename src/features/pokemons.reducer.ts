@@ -1,13 +1,8 @@
-import { IAction, IPokemonsState, IPokemonsState2 } from "../types/interfaces";
+import { IAction, IPokemonsState } from "../types/interfaces";
 import { POKEMONS_DATA } from "./pokemons.actions";
 
-const initialState: IPokemonsState2 = {
-  pokemonsList: [
-    { name: "Pikachu", type1: "electric" },
-    { name: "Tortwig", type1: "leaf", type2: "ground" },
-    { name: "Charizard", type1: "fire" },
-    { name: "Arzeus", type1: "all", type2: "electric" },
-  ],
+const initialState: IPokemonsState = {
+  pokemonsList: [],
 };
 
 const pokemonsReducer = (
@@ -15,6 +10,12 @@ const pokemonsReducer = (
   action: IAction
 ): IPokemonsState => {
   switch (action.type) {
+    case POKEMONS_DATA:
+      const { pokemonsData } = action.payload;
+      return {
+        ...state,
+        pokemonsList: pokemonsData,
+      };
     default:
       return state;
   }

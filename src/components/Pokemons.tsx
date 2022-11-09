@@ -1,23 +1,23 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import Header from "./header/Header";
 import PokemonsList from "./pokemonList/PokemonsList";
 import PokemonCard from "./pokemonCard/PokemonCard";
 import { connect } from "react-redux";
 import { AppStateType } from "../store";
 import { pokemonsSelector } from "../features/pokemons.selectors";
-import { fetchPokemons } from "../gateway/gateway";
-import { TPokemons } from "../types/interfaces";
+import { DispatchType, StateType, TPokemons } from "../types/interfaces";
+
+import * as pokemonsActions from "../features/pokemons.actions";
 
 type Props = {
-  pokemons: Array<any>;
+  pokemons: TPokemons;
+  getPokemons: () => void;
 };
 
-const Pokemons: FC<Props> = ({ pokemons }) => {
-  const [pokemonsList, setPokemonsList] = useState<TPokemons>([]);
+const Pokemons: FC<Props> = ({ pokemons, getPokemons }) => {
   useEffect(() => {
-    fetchPokemons().then((pokemonsData) => setPokemonsList(pokemonsData));
+    getPokemons();
   }, []);
-  console.log(pokemonsList);
 
   return (
     <div className="app">
@@ -28,8 +28,12 @@ const Pokemons: FC<Props> = ({ pokemons }) => {
   );
 };
 
-const mapStateToProps = (state: AppStateType) => ({
+const mapState = (state: AppStateType): StateType => ({
   pokemons: pokemonsSelector(state),
 });
 
-export default connect(mapStateToProps)(Pokemons);
+const mapDispatch: DispatchType = {
+  getPokemons: pokemonsActions.getPokemonsData,
+};
+
+export default connect(mapState, mapDispatch)(Pokemons);
