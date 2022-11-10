@@ -1,14 +1,16 @@
-// export const capLetName = (str: string): string => {
-//   // return str.slice(0, 1).toUpperCase() + str.slice(1);
-//   const strNew: string[] = str.split()
-// };
+export const capLetName = (str: string): string => {
+  return str.slice(0, 1).toUpperCase() + str.slice(1);
+};
 
-export const pagesPerItems = (perPage: number, total: number): any[] => {
-  const resultArr: any[] = [];
-  for (let index = 1; index <= Math.ceil(total / perPage); index++) {
-    resultArr.push(index);
+const searchPokemons = (pokemonList: any[], searchValue: string) => {
+  if (searchValue !== "") {
+    return pokemonList.filter((pokemon) => {
+      if (pokemon.name.includes(searchValue)) {
+        return pokemon;
+      }
+    });
   }
-  return resultArr;
+  return pokemonList;
 };
 
 export function getPaginationItems(
