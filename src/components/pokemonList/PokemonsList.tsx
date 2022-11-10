@@ -25,7 +25,7 @@ const PokemonsList: FC<Props> = ({ pokemons, getPokemonsListData, setUrl }) => {
     getPokemonsListData();
   }, []);
 
-  const itemsPerPage: number = 10;
+  const pokemonsPerPage: number = 10;
 
   const {
     currentData,
@@ -34,7 +34,7 @@ const PokemonsList: FC<Props> = ({ pokemons, getPokemonsListData, setUrl }) => {
     currentPage,
     maxPage,
     setCurrentPage,
-  } = usePagination(pokemons, itemsPerPage);
+  } = usePagination(pokemons, pokemonsPerPage);
 
   return (
     <div className="main">

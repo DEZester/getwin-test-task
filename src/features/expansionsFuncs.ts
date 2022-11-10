@@ -1,6 +1,7 @@
-export const capLetName = (str: string): string => {
-  return str.slice(0, 1).toUpperCase() + str.slice(1);
-};
+// export const capLetName = (str: string): string => {
+//   // return str.slice(0, 1).toUpperCase() + str.slice(1);
+//   const strNew: string[] = str.split()
+// };
 
 export const pagesPerItems = (perPage: number, total: number): any[] => {
   const resultArr: any[] = [];

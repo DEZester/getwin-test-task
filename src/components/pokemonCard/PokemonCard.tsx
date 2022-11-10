@@ -6,6 +6,8 @@ import { StateTypePokemon, DispatchTypePokemon } from "../../types/interfaces";
 import { pokemonSelector } from "../../features/pokemons.selectors";
 import * as pokemonsActions from "../../features/pokemons.actions";
 import { connect } from "react-redux";
+import Pagination from "../Pagination/Pagination";
+import usePagination from "../../hooks/usePaginstion";
 
 type Props = {
   pokemon: any;
@@ -21,7 +23,19 @@ const PokemonCard: FC<Props> = ({
   useEffect(() => {
     getPokemonData(choosenPokemonUrl);
   }, [choosenPokemonUrl]);
-  console.log(pokemon);
+
+  const movesPerPAge: number = 6;
+
+  const {
+    currentData,
+    nextPage,
+    prevPage,
+    currentPage,
+    maxPage,
+    setCurrentPage,
+  } = usePagination(pokemon.moves, movesPerPAge);
+
+  const moves: any[] = currentData();
 
   return pokemon === null ? (
     <div>NoPokemon</div>
@@ -56,21 +70,19 @@ const PokemonCard: FC<Props> = ({
       <figure className="pokemonCard__moves">
         <figcaption className="pokemonCard__moves-title">Moves</figcaption>
         <ul className="pokemonCard__moves-list">
-          {pokemon.moves.map((pokMove: any) => (
+          {moves.map((pokMove: any) => (
             <li key={pokMove.move.name} className="pokemonCard__move">
               {pokMove.move.name}
             </li>
           ))}
         </ul>
-        <div className="pagination">
-          <button className="pagination__page-btn">
-            <i className="pagination__btn-icon pagination__arrowBack"></i>
-          </button>
-          <span>Pagination</span>
-          <button className="pagination__page-btn">
-            <i className="pagination__btn-icon pagination__arrowNext"></i>
-          </button>
-        </div>
+        <Pagination
+          nextPage={nextPage}
+          prevPage={prevPage}
+          currentPage={currentPage}
+          maxPage={maxPage}
+          setCurrentPage={setCurrentPage}
+        />
       </figure>
     </div>
   );
