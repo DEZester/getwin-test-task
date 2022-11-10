@@ -11,7 +11,11 @@ const Pokemons: FC = () => {
       <Header />
       <PokemonsList setUrl={setUrl} />
 
-      <PokemonCard choosenPokemonUrl={choosenPokemonUrl} />
+      {choosenPokemonUrl === null ? (
+        <div></div>
+      ) : (
+        <PokemonCard choosenPokemonUrl={choosenPokemonUrl} />
+      )}
     </div>
   );
 };
