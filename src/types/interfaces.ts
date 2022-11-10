@@ -1,24 +1,47 @@
-export interface IAction {
+export type TPokemons = Array<any>;
+
+export interface IPokemonsAction {
   type: string;
   payload: {
-    pokemonsData: Array<any>;
+    pokemonsData: TPokemons;
+  };
+}
+export interface IPokemonAction {
+  type: string;
+  payload: {
+    pokemonData: any;
   };
 }
 
-export type TPokemons = Array<any>;
+export interface IReducerAction {
+  type: string;
+  payload: {
+    pokemonsData: TPokemons;
+    pokemonData: any;
+  };
+}
 
 export interface IPokemonsState {
   pokemonsList: TPokemons;
+  pokemon: any;
 }
 
 export interface IPokemons {
   pokemons: IPokemonsState;
 }
 
-export type DispatchType = {
-  getPokemons: () => void;
+export type DispatchTypePokemonsList = {
+  getPokemonsListData: () => void;
 };
 
-export type StateType = {
+export type DispatchTypePokemon = {
+  getPokemon: () => void;
+};
+
+export type StateTypePokemons = {
   pokemons: Array<any>;
+};
+
+export type StateTypePokemon = {
+  pokemon: any;
 };

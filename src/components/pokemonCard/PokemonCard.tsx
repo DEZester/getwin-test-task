@@ -1,8 +1,25 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import "./pokemonCard.scss";
 import pokemonImg from "../../images/pokemonTestImg.png";
+import { fetchPokemon } from "../../gateway/gateway";
+import { AppStateType } from "../../store";
+import { StateTypePokemon } from "../../types/interfaces";
+import { pokemonSelector } from "../../features/pokemons.selectors";
+import * as pokemonsActions from "../../features/pokemons.actions";
+import { connect } from "react-redux";
 
-const PokemonCard: FC = () => {
+type Props = {
+  pokemon: any;
+  getPokemonData: () => void;
+};
+
+const PokemonCard: FC<Props> = ({ pokemon, getPokemonData }) => {
+  useEffect(() => {
+    getPokemonData();
+    // console.log(fetchPokemon());
+  }, []);
+  console.log(pokemon);
+
   return (
     <div className="pokemonCard">
       <div className="pokemonCard__main-info">
@@ -13,7 +30,7 @@ const PokemonCard: FC = () => {
         />
         <div className="pokemonCard__types-stats">
           <h1 className="pokemonCard__name">pokemon name</h1>
-          <h2 className="pokemonCard__types-title">Types</h2>
+          <h2 className="pokemonCard__types-title">Type</h2>
           <div className="pokemonCard__types">
             <span className="pokemonCard__type">Grass</span>
             <span className="pokemonCard__type">Poison</span>
@@ -49,4 +66,13 @@ const PokemonCard: FC = () => {
     </div>
   );
 };
-export default PokemonCard;
+
+const mapState = (state: AppStateType): StateTypePokemon => ({
+  pokemon: pokemonSelector(state),
+});
+
+const mapDispatch = {
+  getPokemonData: pokemonsActions.getPokemonData,
+};
+
+export default connect(mapState, mapDispatch)(PokemonCard);

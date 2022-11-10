@@ -1,9 +1,10 @@
-import { fetchPokemons } from "../gateway/gateway";
-import { IAction } from "../types/interfaces";
+import { fetchPokemonsList, fetchPokemon } from "../gateway/gateway";
+import { IPokemonsAction, IPokemonAction } from "../types/interfaces";
 
 export const POKEMONS_DATA: string = "POKEMONS_DATA";
+export const POKEMON_DATA: string = "POKEMON_DATA";
 
-export const pokemonsData = (pokemonsData: any): IAction => {
+export const pokemonsData = (pokemonsData: any): IPokemonsAction => {
   return {
     type: POKEMONS_DATA,
     payload: {
@@ -11,11 +12,27 @@ export const pokemonsData = (pokemonsData: any): IAction => {
     },
   };
 };
+export const pokemonData = (pokemonData: any): IPokemonAction => {
+  return {
+    type: POKEMON_DATA,
+    payload: {
+      pokemonData,
+    },
+  };
+};
 
-export const getPokemonsData = () => {
+export const getPokemonsListData = () => {
   return function (dispatch: any) {
-    fetchPokemons().then((pokemonsList) => {
+    fetchPokemonsList().then((pokemonsList) => {
       dispatch(pokemonsData(pokemonsList));
+    });
+  };
+};
+
+export const getPokemonData = () => {
+  return function (dispatch: any) {
+    fetchPokemon().then((pokemon) => {
+      dispatch(pokemonData(pokemon));
     });
   };
 };

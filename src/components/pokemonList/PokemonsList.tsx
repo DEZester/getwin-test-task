@@ -6,22 +6,26 @@ import Pagination from "../Pagination/Pagination";
 import { connect } from "react-redux";
 import { AppStateType } from "../../store";
 import { pokemonsSelector } from "../../features/pokemons.selectors";
-import { DispatchType, StateType, TPokemons } from "../../types/interfaces";
+import {
+  DispatchTypePokemonsList,
+  StateTypePokemons,
+  TPokemons,
+} from "../../types/interfaces";
 import * as pokemonsActions from "../../features/pokemons.actions";
 import "./pokemonsList.scss";
 import usePagination from "../../hooks/usePaginstion";
 
 type Props = {
   pokemons: TPokemons;
-  getPokemons: () => void;
+  getPokemonsListData: () => void;
+  setUrl: (e: string) => void;
 };
 
-const PokemonsList: FC<Props> = ({ pokemons, getPokemons }) => {
+const PokemonsList: FC<Props> = ({ pokemons, getPokemonsListData, setUrl }) => {
   useEffect(() => {
-    getPokemons();
+    getPokemonsListData();
   }, []);
 
-  const [page, setPage] = useState<number>(1);
   const itemsPerPage: number = 10;
 
   const {
@@ -77,7 +81,7 @@ const PokemonsList: FC<Props> = ({ pokemons, getPokemons }) => {
                 <li
                   key={pokemon.name}
                   className="main__list-item"
-                  onClick={() => console.log(pokemon)}
+                  onClick={() => setUrl(pokemon.url)}
                 >
                   {capLetPokName(pokemon.name)}
                 </li>
@@ -110,12 +114,12 @@ const PokemonsList: FC<Props> = ({ pokemons, getPokemons }) => {
   );
 };
 
-const mapState = (state: AppStateType): StateType => ({
+const mapState = (state: AppStateType): StateTypePokemons => ({
   pokemons: pokemonsSelector(state),
 });
 
-const mapDispatch: DispatchType = {
-  getPokemons: pokemonsActions.getPokemonsData,
+const mapDispatch: DispatchTypePokemonsList = {
+  getPokemonsListData: pokemonsActions.getPokemonsListData,
 };
 
 export default connect(mapState, mapDispatch)(PokemonsList);

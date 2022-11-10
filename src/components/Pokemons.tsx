@@ -5,10 +5,11 @@ import PokemonCard from "./PokemonCard/PokemonCard";
 
 const Pokemons: FC = () => {
   const [choosenPokemonUrl, setUrl] = useState<string>("");
+
   return (
     <div className="app">
       <Header />
-      <PokemonsList />
+      <PokemonsList setUrl={setUrl} />
       <PokemonCard />
     </div>
   );
