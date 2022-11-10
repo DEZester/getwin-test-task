@@ -1,11 +1,16 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
 type Props = {
   searchValue: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  findPokemonBySearch: () => any;
 };
 
-const SearchField: FC<Props> = ({ searchValue, handleChange }) => {
+const SearchField: FC<Props> = ({
+  searchValue,
+  handleChange,
+  findPokemonBySearch,
+}) => {
   return (
     <div className="searchField">
       <svg
@@ -40,7 +45,9 @@ const SearchField: FC<Props> = ({ searchValue, handleChange }) => {
         placeholder="Find your pokemon"
         onChange={handleChange}
       />
-      <button className="searchField__btn">Search</button>
+      <button className="searchField__btn" onClick={findPokemonBySearch}>
+        Search
+      </button>
     </div>
   );
 };

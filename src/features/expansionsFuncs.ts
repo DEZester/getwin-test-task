@@ -2,13 +2,12 @@ export const capLetName = (str: string): string => {
   return str.slice(0, 1).toUpperCase() + str.slice(1);
 };
 
-const searchPokemons = (pokemonList: any[], searchValue: string) => {
+export const searchPokemons = (pokemonList: any[], searchValue: string) => {
   if (searchValue !== "") {
-    return pokemonList.filter((pokemon) => {
-      if (pokemon.name.includes(searchValue)) {
-        return pokemon;
-      }
-    });
+    return pokemonList.filter(
+      (pokemon) =>
+        capLetName(pokemon.name) === capLetName(searchValue.toLowerCase())
+    );
   }
   return pokemonList;
 };

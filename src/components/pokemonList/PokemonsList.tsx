@@ -14,6 +14,7 @@ import * as pokemonsActions from "../../features/pokemons.actions";
 import "./pokemonsList.scss";
 import usePagination from "../../hooks/usePaginstion";
 import SearchField from "../SearchField/SearchField";
+import { searchPokemons } from "../../features/expansionsFuncs";
 
 type Props = {
   pokemons: TPokemons;
@@ -23,6 +24,7 @@ type Props = {
 
 const PokemonsList: FC<Props> = ({ pokemons, getPokemonsListData, setUrl }) => {
   const [searchValue, setValue] = useState<string>("");
+  const [searchedPokemon, setSearchedPokemon] = useState<any[]>([]);
 
   useEffect(() => {
     getPokemonsListData();
@@ -41,17 +43,37 @@ const PokemonsList: FC<Props> = ({ pokemons, getPokemonsListData, setUrl }) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
+    if (!searchValue) {
+      setSearchedPokemon([]);
+    }
   };
+
+  const findPokemonBySearch = () => {
+    const needPokemon: any = searchValue.length
+      ? setSearchedPokemon(searchPokemons(pokemons, searchValue))
+      : currentData();
+
+    return needPokemon;
+  };
+
+  const pokemonsList: any[] =
+    searchedPokemon.length && searchValue.length
+      ? searchedPokemon
+      : currentData();
 
   return (
     <div className="pokemonList">
       <div className="pokemonList__content-container">
-        <SearchField searchValue={searchValue} handleChange={handleChange} />
+        <SearchField
+          searchValue={searchValue}
+          handleChange={handleChange}
+          findPokemonBySearch={findPokemonBySearch}
+        />
         <div className="pokemonList__pokemons">
           <figure className="pokemonList__list">
             <figcaption className="pokemonList__list-title">Name</figcaption>
             <ul className="pokemonList__pokemon-list">
-              {currentData().map((pokemon) => (
+              {pokemonsList.map((pokemon) => (
                 <li
                   key={pokemon.name}
                   className="pokemonList__list-item"
