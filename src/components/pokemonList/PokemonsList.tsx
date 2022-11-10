@@ -1,6 +1,5 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 
-import { capLetPokName } from "../../features/expansionsFuncs";
 import Pagination from "../Pagination/Pagination";
 
 import { connect } from "react-redux";
@@ -18,7 +17,7 @@ import usePagination from "../../hooks/usePaginstion";
 type Props = {
   pokemons: TPokemons;
   getPokemonsListData: () => void;
-  setUrl: (e: string) => void;
+  setUrl: (url: string) => void;
 };
 
 const PokemonsList: FC<Props> = ({ pokemons, getPokemonsListData, setUrl }) => {
@@ -83,7 +82,7 @@ const PokemonsList: FC<Props> = ({ pokemons, getPokemonsListData, setUrl }) => {
                   className="main__list-item"
                   onClick={() => setUrl(pokemon.url)}
                 >
-                  {capLetPokName(pokemon.name)}
+                  {pokemon.name}
                 </li>
               ))}
             </ul>

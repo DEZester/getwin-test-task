@@ -1,39 +1,45 @@
 import { FC, useEffect } from "react";
 import "./pokemonCard.scss";
 import pokemonImg from "../../images/pokemonTestImg.png";
-import { fetchPokemon } from "../../gateway/gateway";
 import { AppStateType } from "../../store";
-import { StateTypePokemon } from "../../types/interfaces";
+import { StateTypePokemon, DispatchTypePokemon } from "../../types/interfaces";
 import { pokemonSelector } from "../../features/pokemons.selectors";
 import * as pokemonsActions from "../../features/pokemons.actions";
 import { connect } from "react-redux";
-
+import { capLetName } from "../../features/expansionsFuncs";
 type Props = {
   pokemon: any;
-  getPokemonData: () => void;
+  getPokemonData: (url: string) => void;
+  choosenPokemonUrl: string;
 };
 
-const PokemonCard: FC<Props> = ({ pokemon, getPokemonData }) => {
+const PokemonCard: FC<Props> = ({
+  pokemon,
+  getPokemonData,
+  choosenPokemonUrl,
+}) => {
   useEffect(() => {
-    getPokemonData();
-    // console.log(fetchPokemon());
-  }, []);
+    getPokemonData(choosenPokemonUrl);
+  }, [choosenPokemonUrl]);
   console.log(pokemon);
 
-  return (
+  return pokemon === null ? (
+    <div>NoPokemon</div>
+  ) : (
     <div className="pokemonCard">
       <div className="pokemonCard__main-info">
         <img
-          src={pokemonImg}
+          src={pokemon.sprites.other["official-artwork"].front_default}
           alt="pokemonImg"
           className="pokemonCard__pokemon-image"
         />
         <div className="pokemonCard__types-stats">
-          <h1 className="pokemonCard__name">pokemon name</h1>
+          <h1 className="pokemonCard__name">{pokemon.name}</h1>
           <h2 className="pokemonCard__types-title">Type</h2>
           <div className="pokemonCard__types">
-            <span className="pokemonCard__type">Grass</span>
-            <span className="pokemonCard__type">Poison</span>
+            {pokemon.types.map((type: any) => (
+              <span className="pokemonCard__type">{type.type.name}</span>
+            ))}
           </div>
           <div className="pokemonCard__stats">
             <span className="pokemonCard__stat">hp</span>
@@ -71,7 +77,7 @@ const mapState = (state: AppStateType): StateTypePokemon => ({
   pokemon: pokemonSelector(state),
 });
 
-const mapDispatch = {
+const mapDispatch: DispatchTypePokemon = {
   getPokemonData: pokemonsActions.getPokemonData,
 };
 

@@ -29,9 +29,9 @@ export const getPokemonsListData = () => {
   };
 };
 
-export const getPokemonData = () => {
+export const getPokemonData = (pokemonUrl: string) => {
   return function (dispatch: any) {
-    fetchPokemon().then((pokemon) => {
+    fetchPokemon(pokemonUrl).then((pokemon) => {
       dispatch(pokemonData(pokemon));
     });
   };

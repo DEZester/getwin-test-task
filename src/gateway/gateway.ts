@@ -8,7 +8,7 @@ export const fetchPokemonsList = async () => {
   return response.data.results;
 };
 
-export const fetchPokemon = async () => {
-  const response = await axios.get("https://pokeapi.co/api/v2/pokemon/6/");
+export const fetchPokemon = async (pokemonUrl: string) => {
+  const response = await axios.get(pokemonUrl);
   return response.data;
 };

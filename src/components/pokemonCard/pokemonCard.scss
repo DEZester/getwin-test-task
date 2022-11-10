@@ -26,7 +26,9 @@
   &__name {
     margin-top: 10px;
     margin-bottom: 0;
-    text-transform: uppercase;
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
   &__types-title {
     margin-bottom: 10px;
@@ -34,8 +36,12 @@
   &__types {
     display: flex;
     gap: 10px;
-    text-transform: uppercase;
     font-weight: bold;
+  }
+  &__type {
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
   &__stats {
     display: flex;
@@ -45,6 +51,9 @@
   &__stat {
     padding: 5px;
     border: 1px solid #c1c1c1;
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
   &__moves {
     width: 580px;

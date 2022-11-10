@@ -35,7 +35,7 @@ export type DispatchTypePokemonsList = {
 };
 
 export type DispatchTypePokemon = {
-  getPokemon: () => void;
+  getPokemonData: (url: string) => void;
 };
 
 export type StateTypePokemons = {

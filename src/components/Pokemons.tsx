@@ -4,13 +4,14 @@ import PokemonsList from "./PokemonList/PokemonsList";
 import PokemonCard from "./PokemonCard/PokemonCard";
 
 const Pokemons: FC = () => {
-  const [choosenPokemonUrl, setUrl] = useState<string>("");
+  const [choosenPokemonUrl, setUrl] = useState<any>(null);
 
   return (
     <div className="app">
       <Header />
       <PokemonsList setUrl={setUrl} />
-      <PokemonCard />
+
+      <PokemonCard choosenPokemonUrl={choosenPokemonUrl} />
     </div>
   );
 };

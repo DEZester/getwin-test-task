@@ -83,6 +83,9 @@
     padding: 5px;
     transition: background 1s;
     cursor: pointer;
+    &::first-letter {
+      text-transform: uppercase;
+    }
     &:hover {
       background: #c1c1c1;
     }
