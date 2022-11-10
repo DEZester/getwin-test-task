@@ -38,16 +38,15 @@ const PokemonCard: FC<Props> = ({
           <h2 className="pokemonCard__types-title">Type</h2>
           <div className="pokemonCard__types">
             {pokemon.types.map((type: any) => (
-              <span className="pokemonCard__type">{type.type.name}</span>
+              <span key={type.type.name} className="pokemonCard__type">
+                {type.type.name}
+              </span>
             ))}
           </div>
           <div className="pokemonCard__stats">
-            <span className="pokemonCard__stat">hp</span>
-            <span className="pokemonCard__stat">attack</span>
-            <span className="pokemonCard__stat">defense</span>
-            <span className="pokemonCard__stat">special-attack</span>
-            <span className="pokemonCard__stat">special-defense</span>
-            <span className="pokemonCard__stat">speed</span>
+            {pokemon.stats.map((pokStat: any) => (
+              <span className="pokemonCard__stat">{`${pokStat.stat.name}:${pokStat.base_stat}`}</span>
+            ))}
           </div>
         </div>
       </div>
