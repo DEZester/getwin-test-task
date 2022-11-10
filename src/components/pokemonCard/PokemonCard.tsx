@@ -1,12 +1,12 @@
 import { FC, useEffect } from "react";
 import "./pokemonCard.scss";
-import pokemonImg from "../../images/pokemonTestImg.png";
+
 import { AppStateType } from "../../store";
 import { StateTypePokemon, DispatchTypePokemon } from "../../types/interfaces";
 import { pokemonSelector } from "../../features/pokemons.selectors";
 import * as pokemonsActions from "../../features/pokemons.actions";
 import { connect } from "react-redux";
-import { capLetName } from "../../features/expansionsFuncs";
+
 type Props = {
   pokemon: any;
   getPokemonData: (url: string) => void;
@@ -45,7 +45,10 @@ const PokemonCard: FC<Props> = ({
           </div>
           <div className="pokemonCard__stats">
             {pokemon.stats.map((pokStat: any) => (
-              <span className="pokemonCard__stat">{`${pokStat.stat.name}:${pokStat.base_stat}`}</span>
+              <span
+                key={pokStat.stat.name}
+                className="pokemonCard__stat"
+              >{`${pokStat.stat.name}:${pokStat.base_stat}`}</span>
             ))}
           </div>
         </div>
@@ -53,10 +56,11 @@ const PokemonCard: FC<Props> = ({
       <figure className="pokemonCard__moves">
         <figcaption className="pokemonCard__moves-title">Moves</figcaption>
         <ul className="pokemonCard__moves-list">
-          <li className="pokemonCard__move">Move</li>
-          <li className="pokemonCard__move">Move</li>
-          <li className="pokemonCard__move">Move</li>
-          <li className="pokemonCard__move">Move</li>
+          {pokemon.moves.map((pokMove: any) => (
+            <li key={pokMove.move.name} className="pokemonCard__move">
+              {pokMove.move.name}
+            </li>
+          ))}
         </ul>
         <div className="pagination">
           <button className="pagination__page-btn">
