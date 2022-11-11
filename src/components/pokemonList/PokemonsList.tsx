@@ -33,6 +33,7 @@ const PokemonsList: FC<Props> = ({
   const [searchValue, setValue] = useState<string>("");
   const [searchedPokemon, setSearchedPokemon] = useState<any[]>([]);
   const [pokemonsTypes, setTypes] = useState<any[]>([""]);
+  const [sortingType, setsortingType] = useState<any>();
 
   useEffect(() => {
     getPokemonsListData();
@@ -57,12 +58,14 @@ const PokemonsList: FC<Props> = ({
     }
   };
 
-  const sortPokemonsByType = (url: string) => {
-    getPokemonsListDataByType(url);
-  };
-
-  const defaultPokemonsList = () => {
-    getPokemonsListData();
+  const sortPokemonsByType = (element: any) => {
+    pokemonsTypes.forEach((type) => {
+      if (element === type.name) {
+        getPokemonsListDataByType(type.url);
+      } else if (element === "none") {
+        getPokemonsListData();
+      }
+    });
   };
 
   const findPokemonBySearch = () => {
@@ -114,9 +117,9 @@ const PokemonsList: FC<Props> = ({
             <select
               id="test"
               className="pokemonList__sort"
-              onClick={() => defaultPokemonsList()}
+              onChange={(e) => sortPokemonsByType(e.target.value)}
             >
-              <option>None</option>
+              <option>none</option>
               {pokemonsTypes.map((type, idx) => (
                 <option
                   key={idx}
@@ -124,13 +127,6 @@ const PokemonsList: FC<Props> = ({
                 >{`${type.name}`}</option>
               ))}
             </select>
-            <button
-              onClick={() =>
-                sortPokemonsByType("https://pokeapi.co/api/v2/type/3")
-              }
-            >
-              filter by type
-            </button>
           </div>
         </div>
       </div>
