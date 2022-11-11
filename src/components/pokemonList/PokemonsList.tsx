@@ -14,8 +14,8 @@ import * as pokemonsActions from "../../features/pokemons.actions";
 import "./pokemonsList.scss";
 import usePagination from "../../hooks/usePaginstion";
 import SearchField from "../SearchField/SearchField";
-import { searchPokemons } from "../../features/expansionsFuncs";
-import { fetchTypes, fetchPokemonsListByType } from "../../gateway/gateway";
+import { searchPokemons, capLetName } from "../../features/expansionsFuncs";
+import { fetchTypes } from "../../gateway/gateway";
 
 type Props = {
   pokemons: TPokemons;
@@ -33,7 +33,6 @@ const PokemonsList: FC<Props> = ({
   const [searchValue, setValue] = useState<string>("");
   const [searchedPokemon, setSearchedPokemon] = useState<any[]>([]);
   const [pokemonsTypes, setTypes] = useState<any[]>([""]);
-  const [sortingType, setsortingType] = useState<any>();
 
   useEffect(() => {
     getPokemonsListData();
@@ -60,9 +59,9 @@ const PokemonsList: FC<Props> = ({
 
   const sortPokemonsByType = (element: any) => {
     pokemonsTypes.forEach((type) => {
-      if (element === type.name) {
+      if (element.toLowerCase() === type.name) {
         getPokemonsListDataByType(type.url);
-      } else if (element === "none") {
+      } else if (element.toLowerCase() === "none") {
         getPokemonsListData();
       }
     });
@@ -105,13 +104,17 @@ const PokemonsList: FC<Props> = ({
                 );
               })}
             </ul>
-            <Pagination
-              prevPage={prevPage}
-              nextPage={nextPage}
-              currentPage={currentPage}
-              maxPage={maxPage}
-              setCurrentPage={setCurrentPage}
-            />
+            {searchedPokemon.length === 1 ? (
+              ""
+            ) : (
+              <Pagination
+                prevPage={prevPage}
+                nextPage={nextPage}
+                currentPage={currentPage}
+                maxPage={maxPage}
+                setCurrentPage={setCurrentPage}
+              />
+            )}
           </figure>
           <div id="billdesc">
             <select
@@ -119,12 +122,12 @@ const PokemonsList: FC<Props> = ({
               className="pokemonList__sort"
               onChange={(e) => sortPokemonsByType(e.target.value)}
             >
-              <option>none</option>
+              <option>None</option>
               {pokemonsTypes.map((type, idx) => (
                 <option
                   key={idx}
-                  onSelect={() => console.log(type)}
-                >{`${type.name}`}</option>
+                  className="pokemonList__sort-item"
+                >{`${capLetName(type.name)}`}</option>
               ))}
             </select>
           </div>

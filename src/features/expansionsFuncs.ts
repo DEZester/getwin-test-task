@@ -1,5 +1,8 @@
 export const capLetName = (str: string): string => {
-  return str.slice(0, 1).toUpperCase() + str.slice(1);
+  const strWithCapLet: string = str
+    ? str.slice(0, 1).toUpperCase() + str.slice(1)
+    : "";
+  return strWithCapLet;
 };
 
 export const searchPokemons = (pokemonList: any[], searchValue: string) => {
