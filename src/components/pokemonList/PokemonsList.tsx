@@ -33,8 +33,6 @@ const PokemonsList: FC<Props> = ({
   const [searchValue, setValue] = useState<string>("");
   const [searchedPokemon, setSearchedPokemon] = useState<any[]>([]);
   const [pokemonsTypes, setTypes] = useState<any[]>([""]);
-  const [isSorted, setIsSorted] = useState<boolean>(false);
-  console.log(isSorted);
 
   useEffect(() => {
     getPokemonsListData();
@@ -61,12 +59,10 @@ const PokemonsList: FC<Props> = ({
 
   const sortPokemonsByType = (url: string) => {
     getPokemonsListDataByType(url);
-    setIsSorted(true);
   };
 
   const defaultPokemonsList = () => {
     getPokemonsListData();
-    setIsSorted(false);
   };
 
   const findPokemonBySearch = () => {
@@ -97,9 +93,9 @@ const PokemonsList: FC<Props> = ({
               {pokemonsList.map((pokemon) => {
                 return (
                   <li
-                    key={pokemon.name}
+                    key={pokemon.name || pokemon.pokemon.name}
                     className="pokemonList__list-item"
-                    onClick={() => setUrl(pokemon.url)}
+                    onClick={() => setUrl(pokemon.url || pokemon.pokemon.url)}
                   >
                     {pokemon.name || pokemon.pokemon.name}
                   </li>
