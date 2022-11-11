@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 
 import Pagination from "../Pagination/Pagination";
-
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { AppStateType } from "../../store";
 import { pokemonsSelector } from "../../features/pokemons.selectors";
@@ -33,6 +33,7 @@ const PokemonsList: FC<Props> = ({
   const [searchValue, setValue] = useState<string>("");
   const [searchedPokemon, setSearchedPokemon] = useState<any[]>([]);
   const [pokemonsTypes, setTypes] = useState<any[]>([""]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPokemonsListData();
@@ -97,16 +98,17 @@ const PokemonsList: FC<Props> = ({
                   <li
                     key={pokemon.name || pokemon.pokemon.name}
                     className="pokemonList__list-item"
-                    onClick={() => setUrl(pokemon.url || pokemon.pokemon.url)}
+                    onClick={() => {
+                      setUrl(pokemon.url || pokemon.pokemon.url);
+                      navigate("/pokemon");
+                    }}
                   >
                     {pokemon.name || pokemon.pokemon.name}
                   </li>
                 );
               })}
             </ul>
-            {searchedPokemon.length === 1 ? (
-              ""
-            ) : (
+            {searchedPokemon.length === 0 ? (
               <Pagination
                 prevPage={prevPage}
                 nextPage={nextPage}
@@ -114,6 +116,8 @@ const PokemonsList: FC<Props> = ({
                 maxPage={maxPage}
                 setCurrentPage={setCurrentPage}
               />
+            ) : (
+              ""
             )}
           </figure>
           <div id="billdesc">

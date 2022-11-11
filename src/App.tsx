@@ -2,11 +2,14 @@ import { FC } from "react";
 import { Provider } from "react-redux";
 import Pokemons from "./components/Pokemons";
 import store from "./store";
+import { BrowserRouter } from "react-router-dom";
 
 const App: FC = () => {
   return (
     <Provider store={store}>
-      <Pokemons />
+      <BrowserRouter>
+        <Pokemons />
+      </BrowserRouter>
     </Provider>
   );
 };
@@ -23,5 +26,5 @@ export default App;
 //connect datas from pokemon to pokemonCard++
 //make a pokemon moves pagination++
 //find pokemon by search++
-//sort pokemons by type
+//sort pokemons by type++
 //add routing

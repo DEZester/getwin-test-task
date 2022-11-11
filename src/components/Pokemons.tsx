@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./Header/Header";
 import PokemonsList from "./PokemonList/PokemonsList";
 import PokemonCard from "./PokemonCard/PokemonCard";
@@ -9,13 +10,13 @@ const Pokemons: FC = () => {
   return (
     <div className="app">
       <Header />
-      <PokemonsList setUrl={setUrl} />
-
-      {choosenPokemonUrl === null ? (
-        <div></div>
-      ) : (
-        <PokemonCard choosenPokemonUrl={choosenPokemonUrl} />
-      )}
+      <Routes>
+        <Route path="/" element={<PokemonsList setUrl={setUrl} />} />
+        <Route
+          path="/pokemon"
+          element={<PokemonCard choosenPokemonUrl={choosenPokemonUrl} />}
+        />
+      </Routes>
     </div>
   );
 };
