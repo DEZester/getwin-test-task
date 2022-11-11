@@ -15,6 +15,7 @@ import "./pokemonsList.scss";
 import usePagination from "../../hooks/usePaginstion";
 import SearchField from "../SearchField/SearchField";
 import { searchPokemons } from "../../features/expansionsFuncs";
+import { fetchTypes } from "../../gateway/gateway";
 
 type Props = {
   pokemons: TPokemons;
@@ -25,11 +26,13 @@ type Props = {
 const PokemonsList: FC<Props> = ({ pokemons, getPokemonsListData, setUrl }) => {
   const [searchValue, setValue] = useState<string>("");
   const [searchedPokemon, setSearchedPokemon] = useState<any[]>([]);
+  const [pokemonsTypes, setTypes] = useState<any[]>([""]);
 
   useEffect(() => {
     getPokemonsListData();
+    fetchTypes().then((types) => setTypes(types.results));
   }, []);
-
+  console.log(pokemonsTypes);
   const pokemonsPerPage: number = 10;
 
   const {
@@ -93,15 +96,9 @@ const PokemonsList: FC<Props> = ({ pokemons, getPokemonsListData, setUrl }) => {
           </figure>
           <div id="billdesc">
             <select id="test" className="pokemonList__sort">
-              <option className="non" value="option1">
-                Option1
-              </option>
-              <option className="non" value="option2">
-                Option2
-              </option>
-              <option className="editable" value="other">
-                Other
-              </option>
+              {pokemonsTypes.map((type, idx) => (
+                <option key={idx}>{`${type.name}`}</option>
+              ))}
             </select>
           </div>
         </div>

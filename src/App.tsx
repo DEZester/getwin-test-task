@@ -22,6 +22,6 @@ export default App;
 //make a pagination for pokemons++
 //connect datas from pokemon to pokemonCard++
 //make a pokemon moves pagination++
-//find pokemon by search
+//find pokemon by search++
 //sort pokemons by type
 //add routing
