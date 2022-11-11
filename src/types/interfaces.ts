@@ -6,6 +6,13 @@ export interface IPokemonsAction {
     pokemonsData: TPokemons;
   };
 }
+
+export interface IPokemonsActionByType {
+  type: string;
+  payload: {
+    pokemonsDataByType: TPokemons;
+  };
+}
 export interface IPokemonAction {
   type: string;
   payload: {
@@ -32,6 +39,7 @@ export interface IPokemons {
 
 export type DispatchTypePokemonsList = {
   getPokemonsListData: () => void;
+  getPokemonsListDataByType: (url: string) => void;
 };
 
 export type DispatchTypePokemon = {

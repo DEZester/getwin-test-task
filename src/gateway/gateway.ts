@@ -20,5 +20,5 @@ export const fetchTypes = () =>
 
 export const fetchPokemonsListByType = async (pokemonUrl: string) => {
   const response = await axios.get(pokemonUrl);
-  return response.data.results;
+  return response.data.pokemon;
 };

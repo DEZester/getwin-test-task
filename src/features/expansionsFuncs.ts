@@ -5,8 +5,9 @@ export const capLetName = (str: string): string => {
 export const searchPokemons = (pokemonList: any[], searchValue: string) => {
   if (searchValue !== "") {
     return pokemonList.filter(
-      (pokemon) =>
-        capLetName(pokemon.name) === capLetName(searchValue.toLowerCase())
+      (pok) =>
+        capLetName(pok.name || pok.pokemon.name) ===
+        capLetName(searchValue.toLowerCase())
     );
   }
   return pokemonList;
