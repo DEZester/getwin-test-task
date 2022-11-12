@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Header from "./Header/Header";
+import Header from "./Header/Header.tsx";
 import PokemonsList from "./PokemonList/PokemonsList";
 import PokemonCard from "./PokemonCard/PokemonCard";
 
