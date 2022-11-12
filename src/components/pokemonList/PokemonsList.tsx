@@ -1,10 +1,13 @@
 import { FC, useEffect, useState } from "react";
-
-import Pagination from "../Pagination/Pagination";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
+import Pagination from "../Pagination/Pagination";
+import usePagination from "../../hooks/usePaginstion";
 import { AppStateType } from "../../store";
 import { pokemonsSelector } from "../../features/pokemons.selectors";
+import SearchField from "../SearchField/SearchField";
+import { searchPokemons, capLetName } from "../../features/expansionsFuncs";
+import { fetchTypes } from "../../gateway/gateway";
 import {
   DispatchTypePokemonsList,
   StateTypePokemons,
@@ -12,10 +15,6 @@ import {
 } from "../../types/interfaces";
 import * as pokemonsActions from "../../features/pokemons.actions";
 import "./pokemonsList.scss";
-import usePagination from "../../hooks/usePaginstion";
-import SearchField from "../SearchField/SearchField";
-import { searchPokemons, capLetName } from "../../features/expansionsFuncs";
-import { fetchTypes } from "../../gateway/gateway";
 
 type Props = {
   pokemons: TPokemons;

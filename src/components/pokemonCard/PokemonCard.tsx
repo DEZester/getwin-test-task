@@ -1,13 +1,12 @@
 import { FC, useEffect } from "react";
-import "./pokemonCard.scss";
-
-import { AppStateType } from "../../store";
-import { StateTypePokemon, DispatchTypePokemon } from "../../types/interfaces";
-import { pokemonSelector } from "../../features/pokemons.selectors";
-import * as pokemonsActions from "../../features/pokemons.actions";
 import { connect } from "react-redux";
 import Pagination from "../Pagination/Pagination";
 import usePagination from "../../hooks/usePaginstion";
+import { StateTypePokemon, DispatchTypePokemon } from "../../types/interfaces";
+import { pokemonSelector } from "../../features/pokemons.selectors";
+import * as pokemonsActions from "../../features/pokemons.actions";
+import { AppStateType } from "../../store";
+import "./pokemonCard.scss";
 
 type Props = {
   pokemon: any;
