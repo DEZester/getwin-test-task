@@ -1,3 +1,4 @@
+@import "../../stylesheets/mixins.scss";
 .header {
   display: flex;
   justify-content: center;
@@ -6,11 +7,15 @@
   height: 100px;
   &__logo {
     margin-top: 10px;
-    width: 300px;
+    width: 230px;
     height: 100px;
     animation-duration: 3s;
     animation-name: zooming;
     animation-iteration-count: infinite;
+    @include for-desktop-up {
+      width: 300px;
+      height: 100px;
+    }
   }
 }
 @keyframes zooming {

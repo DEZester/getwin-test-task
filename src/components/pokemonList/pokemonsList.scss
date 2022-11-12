@@ -1,32 +1,48 @@
+@import "../../stylesheets/mixins.scss";
 .pokemonList {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 45px;
-  width: 900px;
+  margin-bottom: 45px;
+  width: 400px;
   height: 750px;
   background: #fff;
   border-radius: 30px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  @include for-desktop-up {
+    width: 900px;
+    height: 750px;
+  }
   &__content-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 850px;
+    width: 350px;
     height: 700px;
+    @include for-desktop-up {
+      width: 850px;
+    }
   }
   &__pokemons {
     display: flex;
     margin-top: 40px;
-    width: 790px;
+    width: 350px;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
       rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
       rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    @include for-desktop-up {
+      width: 790px;
+    }
   }
   &__list {
-    width: 100%;
+    margin: 16px;
+    width: 230px;
+    @include for-desktop-up {
+      width: 100%;
+    }
   }
   &__list-title {
     font-size: 24px;
@@ -51,18 +67,19 @@
     }
   }
   &__sort {
-    margin: 2px;
+    height: 55px;
+  }
+  &__sort-select {
     padding: 2px 10px;
     background: transparent;
-    width: 130px;
+    width: 88px;
     height: 55px;
     border: 1px solid #c1c1c1;
     &::first-letter {
       text-transform: uppercase;
     }
-  }
-  &__sort-item {
-    width: 108px;
-    height: 49px;
+    @include for-desktop-up {
+      width: 130px;
+    }
   }
 }

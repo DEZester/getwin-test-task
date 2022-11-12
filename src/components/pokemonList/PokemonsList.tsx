@@ -119,18 +119,15 @@ const PokemonsList: FC<Props> = ({
               ""
             )}
           </figure>
-          <div id="billdesc">
+          <div className="pokemonList__sort">
             <select
               id="test"
-              className="pokemonList__sort"
+              className="pokemonList__sort-select"
               onChange={(e) => sortPokemonsByType(e.target.value)}
             >
               <option>None</option>
               {pokemonsTypes.map((type, idx) => (
-                <option
-                  key={idx}
-                  className="pokemonList__sort-item"
-                >{`${capLetName(type.name)}`}</option>
+                <option key={idx}>{`${capLetName(type.name)}`}</option>
               ))}
             </select>
           </div>

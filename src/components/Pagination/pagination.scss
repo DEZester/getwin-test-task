@@ -1,8 +1,13 @@
+@import "../../stylesheets/mixins.scss";
 .pagination {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  width: 310px;
+  @include for-desktop-up {
+    width: 100%;
+  }
   &__page-btn {
     padding: 0;
     width: 32px;
@@ -24,24 +29,12 @@
     &:hover {
       background: url("../../images/back-arrow_hover.png");
     }
-    // &_disabled {
-    //   background: url("../images/back-arrow_disabled.png");
-    //   &:hover {
-    //     background: url("../images/back-arrow_disabled.png");
-    //   }
-    // }
   }
   &__arrowNext {
     background: url("../../images/next-arrow.png");
     &:hover {
       background: url("../../images/next-arrow_hover.png");
     }
-    // &_disabled {
-    //   background: url("../images/next-arrow_disabled.png");
-    //   &:hover {
-    //     background: url("../images/next-arrow_disabled.png");
-    //   }
-    // }
   }
   &__pages {
     display: flex;
@@ -53,10 +46,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     border: 1px solid #c1c1c1;
     font-size: 18px;
+    @include for-desktop-up {
+      width: 45px;
+      height: 45px;
+    }
     cursor: pointer;
     &_active {
       border: 1px solid #1eb7ee;
