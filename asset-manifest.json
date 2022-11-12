@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/getwin-test-task/static/css/main.3ab352b1.css",
+    "main.js": "/getwin-test-task/static/js/main.aee82343.js",
+    "static/media/logo.png": "/getwin-test-task/static/media/logo.392decd1842ddc011f5d.png",
+    "index.html": "/getwin-test-task/index.html",
+    "main.3ab352b1.css.map": "/getwin-test-task/static/css/main.3ab352b1.css.map",
+    "main.aee82343.js.map": "/getwin-test-task/static/js/main.aee82343.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3ab352b1.css",
+    "static/js/main.aee82343.js"
+  ]
+}
