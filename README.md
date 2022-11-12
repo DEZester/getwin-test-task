@@ -1,7 +1,5 @@
 # Pokemons
 
-### [Site link](https://redux-airport.netlify.app/)
-
 ### The tech stack is:
 
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
