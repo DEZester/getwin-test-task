@@ -132,12 +132,19 @@ const typesArr: string[] = [
   "fairy",
 ];
 
-export const pokClassByType = (responseType: string): string => {
-  let resClass: string = "pokemonCard__type";
-  typesArr.forEach((type: string) => {
-    if (responseType === type) {
-      resClass = `pokemonCard__type pokemonCard__type_${type}`;
-    }
-  });
-  return resClass;
-};
+// export const pokClassByType = (responseType: string): string => {
+//   let resClass: string = "pokemonCard__type";
+//   typesArr.forEach((type: string) => {
+//     if (responseType === type) {
+//       resClass = `pokemonCard__type pokemonCard__type_${type}`;
+//     }
+//   });
+//   return resClass;
+// };
+
+export const pokClassByType = (responseType: string): string =>
+  typesArr.reduce(
+    (acc: string, type: any): any =>
+      responseType === type ? `${acc} pokemonCard__type_${type}` : acc,
+    "pokemonCard__type"
+  );
