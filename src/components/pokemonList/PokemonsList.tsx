@@ -31,7 +31,7 @@ const PokemonsList: FC<Props> = ({
 }) => {
   const [searchValue, setValue] = useState<string>("");
   const [searchedPokemon, setSearchedPokemon] = useState<any[]>([]);
-  const [pokemonsTypes, setTypes] = useState<any[]>([""]);
+  const [pokemonsTypes, setTypes] = useState<any[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -122,7 +122,7 @@ const PokemonsList: FC<Props> = ({
               </select>
             </div>
           </div>
-          {searchedPokemon.length === 0 ? (
+          {searchedPokemon.length === 0 && (
             <Pagination
               prevPage={prevPage}
               nextPage={nextPage}
@@ -130,8 +130,6 @@ const PokemonsList: FC<Props> = ({
               maxPage={maxPage}
               setCurrentPage={setCurrentPage}
             />
-          ) : (
-            ""
           )}
         </div>
       </div>

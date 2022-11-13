@@ -8,6 +8,7 @@ import { pokemonSelector } from "../../features/pokemons.selectors";
 import * as pokemonsActions from "../../features/pokemons.actions";
 import { AppStateType } from "../../store";
 import "./pokemonCard.scss";
+import { pokClassByType } from "../../features/expansionsFuncs";
 
 type Props = {
   pokemon: any;
@@ -63,7 +64,10 @@ const PokemonCard: FC<Props> = ({
               <div className="pokemonCard__types">
                 {pokemon &&
                   pokemon.types.map((type: any) => (
-                    <span key={type.type.name} className="pokemonCard__type">
+                    <span
+                      key={type.type.name}
+                      className={pokClassByType(type.type.name)}
+                    >
                       {type.type.name}
                     </span>
                   ))}

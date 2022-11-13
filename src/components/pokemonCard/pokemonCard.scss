@@ -63,9 +63,64 @@
     border-radius: 10px;
     background: #006fb5;
     color: #fff;
+    font-weight: bold;
     text-align: center;
     &::first-letter {
       text-transform: uppercase;
+    }
+    &_grass {
+      background: #3f9609;
+    }
+    &_fire {
+      background: #f67e0d;
+    }
+    &_water {
+      background: #0a79be;
+    }
+    &_normal {
+      background: #aca974;
+    }
+    &_flying {
+      background: #5eb9b4;
+    }
+    &_bug {
+      background: #bddd6e;
+    }
+    &_poison {
+      background: #a819d7;
+    }
+    &_electric {
+      background: #fffa25;
+    }
+    &_ground {
+      background: #e2d15b;
+    }
+    &_fighting {
+      background: #e8121a;
+    }
+    &_psychic {
+      background: #ed0f64;
+    }
+    &_rock {
+      background: #786b3f;
+    }
+    &_ice {
+      background: #66d1e5;
+    }
+    &_ghost {
+      background: #8f54a4;
+    }
+    &_dragon {
+      background: #8b56fe;
+    }
+    &_dark {
+      background: #604733;
+    }
+    &_steel {
+      background: #7b8e8a;
+    }
+    &_fairy {
+      background: #f87ea7;
     }
   }
   &__stats {
@@ -74,6 +129,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+    margin-bottom: 20px;
   }
   &__stat {
     padding: 5px;

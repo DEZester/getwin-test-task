@@ -110,3 +110,34 @@ export function getPaginationItems(
 
   return res;
 }
+
+const typesArr: string[] = [
+  "normal",
+  "fighting",
+  "flying",
+  "poison",
+  "ground",
+  "rock",
+  "bug",
+  "ghost",
+  "steel",
+  "fire",
+  "water",
+  "grass",
+  "electric",
+  "psychic",
+  "ice",
+  "dragon",
+  "dark",
+  "fairy",
+];
+
+export const pokClassByType = (responseType: string): string => {
+  let resClass: string = "pokemonCard__type";
+  typesArr.forEach((type: string) => {
+    if (responseType === type) {
+      resClass = `pokemonCard__type pokemonCard__type_${type}`;
+    }
+  });
+  return resClass;
+};
