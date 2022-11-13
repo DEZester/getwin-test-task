@@ -1,6 +1,7 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Pagination from "../Pagination/Pagination";
+import Loader from "../Loader/Loader";
 import usePagination from "../../hooks/usePagination";
 import { StateTypePokemon, DispatchTypePokemon } from "../../types/interfaces";
 import { pokemonSelector } from "../../features/pokemons.selectors";
@@ -19,6 +20,14 @@ const PokemonCard: FC<Props> = ({
   getPokemonData,
   choosenPokemonUrl,
 }) => {
+  const [showCard, setShowCard] = useState<boolean>(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowCard(true);
+    }, 1000);
+  }, []);
+
   useEffect(() => {
     getPokemonData(choosenPokemonUrl);
   }, [choosenPokemonUrl]);
@@ -38,58 +47,66 @@ const PokemonCard: FC<Props> = ({
 
   return (
     <div className="pokemonCard">
-      <div className="pokemonCard__main-info">
-        {pokemon ? (
-          <img
-            src={pokemon.sprites.other["official-artwork"].front_default}
-            alt="pokemonImg"
-            className="pokemonCard__pokemon-image"
+      {showCard ? (
+        <>
+          <div className="pokemonCard__main-info">
+            {pokemon ? (
+              <img
+                src={pokemon.sprites.other["official-artwork"].front_default}
+                alt="pokemonImg"
+                className="pokemonCard__pokemon-image"
+              />
+            ) : (
+              ""
+            )}
+            <div className="pokemonCard__types-stats">
+              <h1 className="pokemonCard__name">
+                {pokemon ? pokemon.name : ""}
+              </h1>
+              <h2 className="pokemonCard__types-title">Type</h2>
+              <div className="pokemonCard__types">
+                {pokemon
+                  ? pokemon.types.map((type: any) => (
+                      <span key={type.type.name} className="pokemonCard__type">
+                        {type.type.name}
+                      </span>
+                    ))
+                  : ""}
+              </div>
+              <div className="pokemonCard__stats">
+                {pokemon
+                  ? pokemon.stats.map((pokStat: any) => (
+                      <span
+                        key={pokStat.stat.name}
+                        className="pokemonCard__stat"
+                      >{`${pokStat.stat.name}: ${pokStat.base_stat}`}</span>
+                    ))
+                  : ""}
+              </div>
+            </div>
+          </div>
+          <figure className="pokemonCard__moves">
+            <figcaption className="pokemonCard__moves-title">Moves</figcaption>
+            <ul className="pokemonCard__moves-list">
+              {currentData().map((pokMove: any) => (
+                <li key={pokMove.move.name} className="pokemonCard__move">
+                  {pokMove.move.name}
+                </li>
+              ))}
+            </ul>
+          </figure>
+          <Pagination
+            classForCard="pokemonCard__pagination"
+            nextPage={nextPage}
+            prevPage={prevPage}
+            currentPage={currentPage}
+            maxPage={maxPage}
+            setCurrentPage={setCurrentPage}
           />
-        ) : (
-          ""
-        )}
-        <div className="pokemonCard__types-stats">
-          <h1 className="pokemonCard__name">{pokemon ? pokemon.name : ""}</h1>
-          <h2 className="pokemonCard__types-title">Type</h2>
-          <div className="pokemonCard__types">
-            {pokemon
-              ? pokemon.types.map((type: any) => (
-                  <span key={type.type.name} className="pokemonCard__type">
-                    {type.type.name}
-                  </span>
-                ))
-              : ""}
-          </div>
-          <div className="pokemonCard__stats">
-            {pokemon
-              ? pokemon.stats.map((pokStat: any) => (
-                  <span
-                    key={pokStat.stat.name}
-                    className="pokemonCard__stat"
-                  >{`${pokStat.stat.name}: ${pokStat.base_stat}`}</span>
-                ))
-              : ""}
-          </div>
-        </div>
-      </div>
-      <figure className="pokemonCard__moves">
-        <figcaption className="pokemonCard__moves-title">Moves</figcaption>
-        <ul className="pokemonCard__moves-list">
-          {currentData().map((pokMove: any) => (
-            <li key={pokMove.move.name} className="pokemonCard__move">
-              {pokMove.move.name}
-            </li>
-          ))}
-        </ul>
-      </figure>
-      <Pagination
-        classForCard="pokemonCard__pagination"
-        nextPage={nextPage}
-        prevPage={prevPage}
-        currentPage={currentPage}
-        maxPage={maxPage}
-        setCurrentPage={setCurrentPage}
-      />
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
