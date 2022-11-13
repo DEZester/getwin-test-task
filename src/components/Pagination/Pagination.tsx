@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { getPaginationItems } from "../../features/expansionsFuncs";
 
 type Props = {
@@ -21,6 +21,14 @@ const Pagination: FC<Props> = ({
   const pagClassName: string = classForCard
     ? `pagination ${classForCard}`
     : "pagination";
+
+  const pageHandler = (e: React.MouseEvent, num: number) => {
+    const elem = (e.target as HTMLElement).innerText;
+    if (elem !== "...") {
+      setCurrentPage(num);
+    }
+  };
+
   return (
     <div className={pagClassName}>
       <button className="pagination__page-btn" onClick={prevPage}>
@@ -35,11 +43,9 @@ const Pagination: FC<Props> = ({
                 : "pagination__page"
             }
             key={idx}
-            onClick={() => setCurrentPage(pageNum)}
+            onClick={(e) => pageHandler(e, pageNum)}
           >
-            <a className="pagination__page-link">
-              {!isNaN(pageNum) ? pageNum : "..."}
-            </a>
+            {!isNaN(pageNum) ? pageNum : "..."}
           </li>
         ))}
       </ul>
