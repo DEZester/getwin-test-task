@@ -85,24 +85,30 @@ const PokemonCard: FC<Props> = ({
               </div>
             </div>
           </div>
-          <figure className="pokemonCard__moves">
-            <figcaption className="pokemonCard__moves-title">Moves</figcaption>
-            <ul className="pokemonCard__moves-list">
-              {currentData().map((pokMove: any) => (
-                <li key={pokMove.move.name} className="pokemonCard__move">
-                  {pokMove.move.name}
-                </li>
-              ))}
-            </ul>
-          </figure>
-          <Pagination
-            classForCard="pokemonCard__pagination"
-            nextPage={nextPage}
-            prevPage={prevPage}
-            currentPage={currentPage}
-            maxPage={maxPage}
-            setCurrentPage={setCurrentPage}
-          />
+          {moves.length > 0 && (
+            <>
+              <figure className="pokemonCard__moves">
+                <figcaption className="pokemonCard__moves-title">
+                  Moves
+                </figcaption>
+                <ul className="pokemonCard__moves-list">
+                  {currentData().map((pokMove: any) => (
+                    <li key={pokMove.move.name} className="pokemonCard__move">
+                      {pokMove.move.name}
+                    </li>
+                  ))}
+                </ul>
+              </figure>
+              <Pagination
+                classForCard="pokemonCard__pagination"
+                nextPage={nextPage}
+                prevPage={prevPage}
+                currentPage={currentPage}
+                maxPage={maxPage}
+                setCurrentPage={setCurrentPage}
+              />
+            </>
+          )}
         </>
       ) : (
         <Loader />
