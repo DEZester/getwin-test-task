@@ -4,7 +4,7 @@
   flex-direction: column;
   margin-top: 45px;
   margin-bottom: 25px;
-  width: 400px;
+  width: 360px;
   height: 100%;
   background: #fff;
   border-radius: 30px;
@@ -120,5 +120,9 @@
     &::first-letter {
       text-transform: uppercase;
     }
+  }
+  &__pagination {
+    align-self: center;
+    margin-bottom: 25px;
   }
 }

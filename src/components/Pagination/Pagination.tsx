@@ -7,6 +7,7 @@ type Props = {
   setCurrentPage: (e: number) => void;
   currentPage: number;
   maxPage: number;
+  classForCard?: string;
 };
 
 const Pagination: FC<Props> = ({
@@ -15,9 +16,13 @@ const Pagination: FC<Props> = ({
   currentPage,
   maxPage,
   setCurrentPage,
+  classForCard,
 }) => {
+  const pagClassName: string = classForCard
+    ? `pagination ${classForCard}`
+    : "pagination";
   return (
-    <div className="pagination">
+    <div className={pagClassName}>
       <button className="pagination__page-btn" onClick={prevPage}>
         <i className="pagination__btn-icon pagination__arrowBack"></i>
       </button>

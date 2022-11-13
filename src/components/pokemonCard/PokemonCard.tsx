@@ -81,14 +81,15 @@ const PokemonCard: FC<Props> = ({
             </li>
           ))}
         </ul>
-        <Pagination
-          nextPage={nextPage}
-          prevPage={prevPage}
-          currentPage={currentPage}
-          maxPage={maxPage}
-          setCurrentPage={setCurrentPage}
-        />
       </figure>
+      <Pagination
+        classForCard="pokemonCard__pagination"
+        nextPage={nextPage}
+        prevPage={prevPage}
+        currentPage={currentPage}
+        maxPage={maxPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };
