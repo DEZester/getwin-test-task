@@ -57,7 +57,7 @@ const PokemonsList: FC<Props> = ({
     }
   };
 
-  const sortPokemonsByType = (element: any) => {
+  const sortPokemonsByType = (element: string) => {
     pokemonsTypes.forEach((type) => {
       if (element.toLowerCase() === type.name) {
         getPokemonsListDataByType(type.url);
