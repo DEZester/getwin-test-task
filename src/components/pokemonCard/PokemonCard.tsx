@@ -50,38 +50,32 @@ const PokemonCard: FC<Props> = ({
       {showCard ? (
         <>
           <div className="pokemonCard__main-info">
-            {pokemon ? (
+            {pokemon && (
               <img
                 src={pokemon.sprites.other["official-artwork"].front_default}
                 alt="pokemonImg"
                 className="pokemonCard__pokemon-image"
               />
-            ) : (
-              ""
             )}
             <div className="pokemonCard__types-stats">
-              <h1 className="pokemonCard__name">
-                {pokemon ? pokemon.name : ""}
-              </h1>
+              <h1 className="pokemonCard__name">{pokemon && pokemon.name}</h1>
               <h2 className="pokemonCard__types-title">Type</h2>
               <div className="pokemonCard__types">
-                {pokemon
-                  ? pokemon.types.map((type: any) => (
-                      <span key={type.type.name} className="pokemonCard__type">
-                        {type.type.name}
-                      </span>
-                    ))
-                  : ""}
+                {pokemon &&
+                  pokemon.types.map((type: any) => (
+                    <span key={type.type.name} className="pokemonCard__type">
+                      {type.type.name}
+                    </span>
+                  ))}
               </div>
               <div className="pokemonCard__stats">
-                {pokemon
-                  ? pokemon.stats.map((pokStat: any) => (
-                      <span
-                        key={pokStat.stat.name}
-                        className="pokemonCard__stat"
-                      >{`${pokStat.stat.name}: ${pokStat.base_stat}`}</span>
-                    ))
-                  : ""}
+                {pokemon &&
+                  pokemon.stats.map((pokStat: any) => (
+                    <span
+                      key={pokStat.stat.name}
+                      className="pokemonCard__stat"
+                    >{`${pokStat.stat.name}: ${pokStat.base_stat}`}</span>
+                  ))}
               </div>
             </div>
           </div>
