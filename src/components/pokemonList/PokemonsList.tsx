@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import Pagination from "../Pagination/Pagination";
-import usePagination from "../../hooks/usePaginstion";
+import usePagination from "../../hooks/usePagination";
 import { AppStateType } from "../../store";
 import { pokemonsSelector } from "../../features/pokemons.selectors";
 import SearchField from "../SearchField/SearchField";
@@ -89,48 +89,50 @@ const PokemonsList: FC<Props> = ({
           findPokemonBySearch={findPokemonBySearch}
         />
         <div className="pokemonList__pokemons">
-          <figure className="pokemonList__list">
-            <figcaption className="pokemonList__list-title">Name</figcaption>
-            <ul className="pokemonList__pokemon-list">
-              {pokemonsList.map((pokemon) => {
-                return (
-                  <li
-                    key={pokemon.name || pokemon.pokemon.name}
-                    className="pokemonList__list-item"
-                    onClick={() => {
-                      setUrl(pokemon.url || pokemon.pokemon.url);
-                      navigate("/pokemon");
-                    }}
-                  >
-                    {pokemon.name || pokemon.pokemon.name}
-                  </li>
-                );
-              })}
-            </ul>
-            {searchedPokemon.length === 0 ? (
-              <Pagination
-                prevPage={prevPage}
-                nextPage={nextPage}
-                currentPage={currentPage}
-                maxPage={maxPage}
-                setCurrentPage={setCurrentPage}
-              />
-            ) : (
-              ""
-            )}
-          </figure>
-          <div className="pokemonList__sort">
-            <select
-              id="test"
-              className="pokemonList__sort-select"
-              onChange={(e) => sortPokemonsByType(e.target.value)}
-            >
-              <option>None</option>
-              {pokemonsTypes.map((type, idx) => (
-                <option key={idx}>{`${capLetName(type.name)}`}</option>
-              ))}
-            </select>
+          <div className="pokemonList__list-container">
+            <figure className="pokemonList__list">
+              <figcaption className="pokemonList__list-title">Name</figcaption>
+              <ul className="pokemonList__pokemon-list">
+                {pokemonsList.map((pokemon) => {
+                  return (
+                    <li
+                      key={pokemon.name || pokemon.pokemon.name}
+                      className="pokemonList__list-item"
+                      onClick={() => {
+                        setUrl(pokemon.url || pokemon.pokemon.url);
+                        navigate("/pokemon");
+                      }}
+                    >
+                      {pokemon.name || pokemon.pokemon.name}
+                    </li>
+                  );
+                })}
+              </ul>
+            </figure>
+            <div className="pokemonList__sort">
+              <select
+                id="test"
+                className="pokemonList__sort-select"
+                onChange={(e) => sortPokemonsByType(e.target.value)}
+              >
+                <option>None</option>
+                {pokemonsTypes.map((type, idx) => (
+                  <option key={idx}>{`${capLetName(type.name)}`}</option>
+                ))}
+              </select>
+            </div>
           </div>
+          {searchedPokemon.length === 0 ? (
+            <Pagination
+              prevPage={prevPage}
+              nextPage={nextPage}
+              currentPage={currentPage}
+              maxPage={maxPage}
+              setCurrentPage={setCurrentPage}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

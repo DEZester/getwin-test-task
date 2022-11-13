@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { connect } from "react-redux";
 import Pagination from "../Pagination/Pagination";
-import usePagination from "../../hooks/usePaginstion";
+import usePagination from "../../hooks/usePagination";
 import { StateTypePokemon, DispatchTypePokemon } from "../../types/interfaces";
 import { pokemonSelector } from "../../features/pokemons.selectors";
 import * as pokemonsActions from "../../features/pokemons.actions";
