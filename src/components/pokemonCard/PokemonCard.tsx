@@ -1,8 +1,9 @@
 import { FC, useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import usePagination from "../../hooks/usePagination";
 import Pagination from "../Pagination/Pagination";
 import Loader from "../Loader/Loader";
-import usePagination from "../../hooks/usePagination";
 import { StateTypePokemon, DispatchTypePokemon } from "../../types/interfaces";
 import { pokemonSelector } from "../../features/pokemons.selectors";
 import * as pokemonsActions from "../../features/pokemons.actions";
@@ -22,6 +23,7 @@ const PokemonCard: FC<Props> = ({
   choosenPokemonUrl,
 }) => {
   const [showCard, setShowCard] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -50,6 +52,12 @@ const PokemonCard: FC<Props> = ({
     <div className="pokemonCard">
       {showCard ? (
         <>
+          <button
+            className="pokemonCard__back-btn"
+            onClick={(): void => navigate(-1)}
+          >
+            Back
+          </button>
           <div className="pokemonCard__main-info">
             {pokemon && (
               <img
